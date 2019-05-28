@@ -1,5 +1,4 @@
 <template>
-  
   <h2 class="title">${heading}</h2>
   <table class="table is-striped is-fullwidth">
     <thead>
@@ -22,9 +21,9 @@
 
       <tr repeat.for="person of people" person.bind="person">
         <td><a class="is-link" href="/people/${person.id}">${person.fullName}</a></td>
-        <td>${person.palindrome ? 'Yes' : 'No'}</td>
-        <td>${person.authorised ? 'Yes' : 'No'}</td>
-        <td>${person.enabled ? 'Yes' : 'No'}</td>
+        <td><span class="${person.palindrome ? 'col-green' : 'col-red'}">${person.palindrome ? 'Yes' : 'No'}</span></td>
+        <td><span class="${person.authorised ? 'col-green' : 'col-red'}">${person.authorised ? 'Yes' : 'No'}</span></td>
+        <td><span class="${person.enabled ? 'col-green' : 'col-red'}">${person.enabled ? 'Yes' : 'No'}</span></td>
         <td>${person.colours | colourNames }</td>
       </tr>
     </tbody>

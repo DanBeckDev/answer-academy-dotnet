@@ -4852,6 +4852,14 @@ a.box:active {
   color: currentColor;
 }
 
+.table td span.col-green {
+  color: green;
+}
+
+.table td span.col-red {
+    color: red;
+}
+
 .table th {
   color: #363636;
   text-align: left;

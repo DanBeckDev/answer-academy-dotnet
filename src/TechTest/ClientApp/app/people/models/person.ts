@@ -37,6 +37,8 @@ export class Person implements IPerson {
     //
     // Example: 'Bo Bob' is a palindrome.
 
-    return false;
+    const fullName = this.firstName + this.lastName;
+		const sanitizedName = fullName.toLowerCase().replace(/ /g, '');
+		return Array.from(sanitizedName).toString() === Array.from(sanitizedName).reverse().toString();
   }
 }

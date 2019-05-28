@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TechTest.Repositories;
 using TechTest.Repositories.Models;
+using System.Linq;
 
 namespace TechTest.Controllers
 {
@@ -26,7 +27,13 @@ namespace TechTest.Controllers
             // people returned from PeopleRepository then an empty
             // JSON array should be returned.
 
-            throw new NotImplementedException();
+            var result = PersonRepository.GetAll();
+            if (!result.Any())
+            {
+                string[] emptyArr = { };
+                return Ok(emptyArr);
+            }
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
@@ -39,7 +46,12 @@ namespace TechTest.Controllers
             // If null is returned from the PeopleRepository with
             // the supplied id then a NotFound should be returned.
 
-            throw new NotImplementedException();
+            var result = PersonRepository.Get(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
         }
 
         [HttpPut("{id}")]
@@ -53,8 +65,16 @@ namespace TechTest.Controllers
             // updated, the person should be returned from the endpoint.
             // If null is returned from the PeopleRepository then a
             // NotFound should be returned.
-
-            throw new NotImplementedException();
+            var person = PersonRepository.Get(id);
+            person.Authorised = personUpdate.Authorised;
+            person.Colours = personUpdate.Colours;
+            person.Enabled = personUpdate.Enabled;
+            var result = PersonRepository.Update(person);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
         }
     }
 }

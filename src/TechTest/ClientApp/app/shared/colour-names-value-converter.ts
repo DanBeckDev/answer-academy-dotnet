@@ -13,7 +13,11 @@ export class ColourNamesValueConverter {
     //
     // Example: 'Blue, Green, Red'
 
-    return 'Todo';
+    let colList = colours.map(col => {
+			return col.name;
+		}).sort().join(", ");
+
+		return colList;
   }
 
 }
